@@ -7,10 +7,10 @@ namespace CommandConsole
 {
     internal class JokeResponse
     {
-        public string Type { get; set; }
-        public string Setup { get; set; }
-        public string Punchline { get; set; }
-        public int Id { get; set; }
+        public string type { get; set; }
+        public string setup { get; set; }
+        public string punchline { get; set; }
+        public int id { get; set; }
     }
 
     internal class CommandJoke : ICommand
@@ -43,10 +43,10 @@ namespace CommandConsole
                     string result = await response.Content.ReadAsStringAsync();
                     JokeResponse joke = JsonSerializer.Deserialize<JokeResponse>(result);
 
-                    Console.WriteLine($"Joke ID: {joke.Id}");
-                    Console.WriteLine($"Type: {joke.Type}");
-                    Console.WriteLine($"Setup: {joke.Setup}");
-                    Console.WriteLine($"Punchline: {joke.Punchline}");
+                    Console.WriteLine($"Joke ID: {joke.id}");
+                    Console.WriteLine($"Type: {joke.type}");
+                    Console.WriteLine($"Setup: {joke.setup}");
+                    Console.WriteLine($"Punchline: {joke.punchline}");
                 }
                 else
                 {

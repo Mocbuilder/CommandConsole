@@ -12,7 +12,7 @@ namespace CommandConsole
         {
             ConsoleColor currentColor = Console.ForegroundColor;
             Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine(e.Message);
+            Console.WriteLine("Error: " + e.Message);
             Console.ForegroundColor = currentColor;
         }
     }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Data;
+using System.Reflection.Metadata;
 using System.Security.Cryptography;
 using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
@@ -55,6 +56,7 @@ namespace CommandConsole
         {
             TLCommands.Add(new CommandHelp(TLCommands));
             TLCommands.Add(new CommandColor());
+            TLCommands.Add(new CommandJoke());
         }
     }
 }

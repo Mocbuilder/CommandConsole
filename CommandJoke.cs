@@ -32,6 +32,34 @@ namespace CommandConsole
             if (parameter == "ten")
             {
                 apiUrl = "https://official-joke-api.appspot.com/jokes/ten";
+
+                try
+                {
+                    HttpResponseMessage tenresponse = await client.GetAsync(apiUrl);
+
+                    if (tenresponse.IsSuccessStatusCode)
+                    {
+                        string result = await tenresponse.Content.ReadAsStringAsync();
+                        for (int i = 0; i < 10; i++)
+                        {
+                            JokeResponse joke = JsonSerializer.Deserialize<JokeResponse>(result);
+
+                            Console.WriteLine($"Joke ID: {joke.id}");
+                            Console.WriteLine($"Type: {joke.type}");
+                            Console.WriteLine($"Setup: {joke.setup}");
+                            Console.WriteLine($"Punchline: {joke.punchline}");
+                        }
+                        return;
+                    }
+                    else
+                    {
+                        throw new Exception("API-Error: " + tenresponse.StatusCode);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception($"Failed to get jokes from API: {ex.Message}");
+                }
             }
 
             try
@@ -50,7 +78,7 @@ namespace CommandConsole
                 }
                 else
                 {
-                    Console.WriteLine("Error: " + response.StatusCode);
+                    throw new Exception("API-Error: " + response.StatusCode);
                 }
             }
             catch (Exception ex)

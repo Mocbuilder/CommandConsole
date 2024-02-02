@@ -13,11 +13,12 @@ namespace CommandConsole
         
         public static List<ICommand> TLCommands = new List<ICommand>()
         {
-            new CommandHelp(TLCommands),
+            //new CommandHelp(TLCommands),
         };
 
         public static void Main(string[] args)
         {
+            AddCommandsToList();
             while (true)
             {
                 try
@@ -50,5 +51,10 @@ namespace CommandConsole
             return (cmd, param);
         }
 
+        internal static void AddCommandsToList()
+        {
+            TLCommands.Add(new CommandHelp(TLCommands));
+            TLCommands.Add(new CommandColor());
+        }
     }
 }

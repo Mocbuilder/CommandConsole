@@ -6,7 +6,7 @@ using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommandConsole
+namespace CommandConsole.Commands
 {
     internal class CommandIP : ICommand
     {
@@ -21,7 +21,7 @@ namespace CommandConsole
 
         public void Execute(string Parameter)
         {
-            if(Parameter != "v4" && Parameter != "v6")
+            if (Parameter != "v4" && Parameter != "v6")
             {
                 throw new Exception("IP-Error: Invalid format for 'ip' command. Use like this: 'ip- [v4] [-v6]'");
                 return;

@@ -6,7 +6,7 @@ using System.Net.NetworkInformation;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommandConsole
+namespace CommandConsole.Commands
 {
     internal class CommandPing : ICommand
     {

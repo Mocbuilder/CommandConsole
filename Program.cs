@@ -61,6 +61,8 @@ namespace CommandConsole
             TLCommands.Add(new CommandPing());
             TLCommands.Add(new CommandSystem());
             TLCommands.Add(new CommandHacker());
+            TLCommands.Add(new CommandClear());
+            TLCommands.Add(new CommandExit());
         }
     }
 }

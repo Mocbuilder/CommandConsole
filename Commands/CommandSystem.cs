@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 using System.Diagnostics;
 using Microsoft.Win32;
 
-namespace CommandConsole
+namespace CommandConsole.Commands
 {
     internal class CommandSystem : ICommand
     {
@@ -53,7 +53,7 @@ namespace CommandConsole
             Console.WriteLine($"Runtime Directory: {RuntimeEnvironment.GetRuntimeDirectory()}");
         }
 
-        public void PrintOS() 
+        public void PrintOS()
         {
             Console.WriteLine($"OS Version: {Environment.OSVersion}");
             Console.WriteLine($"System Directory: {Environment.SystemDirectory}");

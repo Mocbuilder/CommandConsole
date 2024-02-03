@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommandConsole
+namespace CommandConsole.Commands
 {
     internal class CommandInfo
     {
@@ -12,7 +12,7 @@ namespace CommandConsole
         public Action Action { get; set; }
         public bool HasParameter { get; set; }
 
-        public CommandInfo(string name, Action action, bool hasParameter) 
+        public CommandInfo(string name, Action action, bool hasParameter)
         {
             Name = name;
             Action = action;

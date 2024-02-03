@@ -3,7 +3,7 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 
-namespace CommandConsole
+namespace CommandConsole.Commands
 {
     internal class JokeResponse
     {
@@ -29,7 +29,7 @@ namespace CommandConsole
         public async void Execute(string parameter)
         {
             string apiUrl = "https://official-joke-api.appspot.com/random_joke";
-            if(parameter == "ten")
+            if (parameter == "ten")
             {
                 apiUrl = "https://official-joke-api.appspot.com/jokes/ten";
 

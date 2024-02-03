@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommandConsole
+namespace CommandConsole.Commands
 {
     internal class CommandColor : ICommand
     {
-        
+
         public CommandColor() { }
 
         public string Name => "setcolor";

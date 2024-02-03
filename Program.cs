@@ -4,6 +4,7 @@ using System.Reflection.Metadata;
 using System.Security.Cryptography;
 using System.Xml.Linq;
 using static System.Runtime.InteropServices.JavaScript.JSType;
+using CommandConsole.Commands;
 
 namespace CommandConsole
 {

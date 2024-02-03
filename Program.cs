@@ -57,6 +57,10 @@ namespace CommandConsole
             TLCommands.Add(new CommandHelp(TLCommands));
             TLCommands.Add(new CommandColor());
             TLCommands.Add(new CommandJoke());
+            TLCommands.Add(new CommandIP());
+            TLCommands.Add(new CommandPing());
+            TLCommands.Add(new CommandSystem());
+            TLCommands.Add(new CommandHacker());
         }
     }
 }

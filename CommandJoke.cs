@@ -24,12 +24,12 @@ namespace CommandConsole
 
         public string Name => "joke";
 
-        public string HelpText => "joke[-ten] -> Get a random joke, or optionally ten random jokes.";
+        public string HelpText => "joke [-ten] -> Get a random joke, or optionally ten random jokes.";
 
         public async void Execute(string parameter)
         {
             string apiUrl = "https://official-joke-api.appspot.com/random_joke";
-            if (parameter == "ten")
+            if(parameter == "ten")
             {
                 apiUrl = "https://official-joke-api.appspot.com/jokes/ten";
 
@@ -40,14 +40,15 @@ namespace CommandConsole
                     if (tenresponse.IsSuccessStatusCode)
                     {
                         string result = await tenresponse.Content.ReadAsStringAsync();
-                        for (int i = 0; i < 10; i++)
-                        {
-                            JokeResponse joke = JsonSerializer.Deserialize<JokeResponse>(result);
+                        JokeResponse[] jokes = JsonSerializer.Deserialize<JokeResponse[]>(result);
 
+                        foreach (var joke in jokes)
+                        {
                             Console.WriteLine($"Joke ID: {joke.id}");
                             Console.WriteLine($"Type: {joke.type}");
                             Console.WriteLine($"Setup: {joke.setup}");
                             Console.WriteLine($"Punchline: {joke.punchline}");
+                            Console.WriteLine();
                         }
                         return;
                     }

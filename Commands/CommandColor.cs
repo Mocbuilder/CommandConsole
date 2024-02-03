@@ -24,7 +24,7 @@ namespace CommandConsole.Commands
                 throw new Exception("Can't use red as standard color, because it is reserved for important system infos.");
 
             Console.ForegroundColor = consoleColor;
-            Console.WriteLine("Hello World!");
+            Console.WriteLine("Changed color to " + consoleColor);
         }
     }
 }

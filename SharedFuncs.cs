@@ -8,12 +8,8 @@ namespace CommandConsole
 {
     internal class SharedFuncs
     {
-        public static void Error(Exception e)
-        {
-            ConsoleColor currentColor = Console.ForegroundColor;
-            Console.ForegroundColor = ConsoleColor.Red;
-            Console.WriteLine("Error: " + e.Message);
-            Console.ForegroundColor = currentColor;
-        }
+        
+
+        
     }
 }

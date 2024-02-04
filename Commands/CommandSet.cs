@@ -12,9 +12,9 @@ namespace CommandConsole.Commands
 
         public string HelpText => "set-[type]-[name]-[value] -> Set a variable as 'string' or 'int'";
         private Framework framework;
-        public CommandSet(Framework framework)
+        public CommandSet(Framework frm)
         {
-            framework = framework;
+            this.framework = frm;
         }
         public void Execute(string type, string name, string value)
         {

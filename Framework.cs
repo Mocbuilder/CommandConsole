@@ -29,8 +29,9 @@ namespace CommandConsole
             Commands.Add(new CommandExit());
             Commands.Add(new CommandScript(this));
             Commands.Add(new CommandSleep());
-            Commands.Add(new CommandPrint());
+            Commands.Add(new CommandPrint(this));
             Commands.Add(new CommandSet(this));
+            Commands.Add(new CommandGet(this));
         }
 
         public void HandleError(Exception e)

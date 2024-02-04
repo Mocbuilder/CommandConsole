@@ -12,7 +12,7 @@ namespace CommandConsole
         public string Type { get; set; }
         public string Value { get; set; }
 
-        public VariableInfo(string name, string type, string value)
+        public VariableInfo(string type, string name, string value)
         {
             Name = name;
             Type = type;

@@ -20,7 +20,7 @@ namespace CommandConsole.Commands
 
             if (variable != null)
             {
-                Console.WriteLine($"Variable Name: {variable.Name}, Type: {variable.Type}, Value: {variable.Value}");
+                Console.WriteLine($"{variable.Type} {variable.Name} = {variable.Value}");
                 return;
             }
         }

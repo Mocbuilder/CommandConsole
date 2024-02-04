@@ -18,7 +18,9 @@ All available commands are:
 - ```exit``` -> Quit the application
 - ```script-[Valid file path to a text file]``` -> Run a script of commands
 - ```sleep-[any valid number]``` -> wait for specified time in seconds. Mainly used in scripting
-- ```print-[Text to be printed]``` -> Prints specified text. Mainly used in scripting
+- ```print-[Text to be printed or 'var']-[variable name]``` -> Prints specified text or, if that is var-[any existing variable], prints the value of the variable
+- ```set-[type]-[name]-[value]``` -> Set a new variable as 'string' or 'int' and add a name and value
+- ```get-[variable name]``` -> get any existing variable
 
 ## Scripting
 Scripting is done in a text file, and is basically a list of commands.
@@ -27,7 +29,8 @@ This is mainly usefull when you are trying to run a set of commands again and ag
 There are also some commands specifically made for scripting (although they work in the console too):
 - ```sleep``` allows you to specify a time in seconds that the console will just stop
 - ```print``` allows you to print any text to the console
+- ```set``` allows to set a new variable with a type (either 'string' or 'int') and assign a name and value
+- ```get``` allows to get any existing variable and print it with type, name and value (Example: string testvariable = Hello World!)
 
 ## To-Do
-- bugfixes, bugfixes, bugfixes...
-- MAYBE add a take-string-as-input command for scripting, but would require some kind of temporary information storage (file or smth that gets deleted on close)
+- add calc commands (addition, subtraction, multiplication, division) like ```add-[any number]-[any number]-[any number or null]``` 

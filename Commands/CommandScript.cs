@@ -22,9 +22,9 @@ namespace CommandConsole.Commands
 
         public string HelpText => "script-[Valid file path to a C# file]";
 
-        public void Execute(string parameter)
+        public void Execute(string Parameter, string Parameter2, string Parameter3)
         { 
-            foreach(var line in File.ReadAllLines(parameter))
+            foreach(var line in File.ReadAllLines(Parameter))
             {
                 framework.Execute(line);
             } 

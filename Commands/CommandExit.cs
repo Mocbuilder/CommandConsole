@@ -12,7 +12,7 @@ namespace CommandConsole.Commands
 
         public string HelpText => "exit -> Quit the application";
 
-        public void Execute(string Parameter)
+        public void Execute(string Parameter, string Parameter2, string Parameter3)
         {
             Environment.Exit(0);
         }

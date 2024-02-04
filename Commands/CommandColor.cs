@@ -15,10 +15,10 @@ namespace CommandConsole.Commands
 
         public string HelpText => "setcolor-[Any valid 8-Bit color] -> Sets the font color of the console";
 
-        public void Execute(string parameter)
+        public void Execute(string Parameter, string Parameter2, string Parameter3)
         {
-            if (!Enum.TryParse(parameter, true, out ConsoleColor consoleColor))
-                throw new Exception($"Invalid color: {parameter}. Using default color.");
+            if (!Enum.TryParse(Parameter, true, out ConsoleColor consoleColor))
+                throw new Exception($"Invalid color: {Parameter}. Using default color.");
 
             if (consoleColor == ConsoleColor.Red || consoleColor == ConsoleColor.DarkRed)
                 throw new Exception("Can't use red as standard color, because it is reserved for important system infos.");

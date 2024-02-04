@@ -27,3 +27,7 @@ This is mainly usefull when you are trying to run a set of commands again and ag
 There are also some commands specifically made for scripting (although they work in the console too):
 - ```sleep``` allows you to specify a time in seconds that the console will just stop
 - ```print``` allows you to print any text to the console
+
+## To-Do
+- bugfixes, bugfixes, bugfixes...
+- MAYBE add a take-string-as-input command for scripting, but would require some kind of temporary information storage (file or smth that gets deleted on close)

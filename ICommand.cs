@@ -11,6 +11,6 @@ namespace CommandConsole
         string Name { get; }
         string HelpText { get; }
 
-        void Execute(string Parameter);
+        void Execute(string Parameter, string Parameter2, string Parameter3);
     }
 }

@@ -19,7 +19,7 @@ namespace CommandConsole.Commands
             this.allCommands = allCommands;
         }
 
-        public void Execute(string parameter)
+        public void Execute(string Parameter, string Parameter2, string Parameter3)
         {
             Console.WriteLine("All available commands are:");
 

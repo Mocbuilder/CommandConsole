@@ -37,7 +37,7 @@ namespace CommandConsole.Commands
             }
         }
 
-        public void Execute(string Parameter)
+        public void Execute(string Parameter, string Parameter2, string Parameter3)
         {
             try
             {

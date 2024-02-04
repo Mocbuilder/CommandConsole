@@ -15,7 +15,7 @@ namespace CommandConsole.Commands
         public string HelpText => "ping-[Any valid IPv4 address] -> Pings the specified IP address";
 
         public CommandPing() { }
-        public void Execute(string Parameter)
+        public void Execute(string Parameter, string Parameter2, string Parameter3)
         {
             if (IPAddress.TryParse(Parameter, out IPAddress ipAddress) && ipAddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
             {

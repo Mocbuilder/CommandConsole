@@ -20,7 +20,7 @@ namespace CommandConsole.Commands
         "[net -> Get .Net Framework information] " +
         "[programs -> Get all installed programs (from HKEY_LOCAL_MACHINE)]";
 
-        public void Execute(string Parameter)
+        public void Execute(string Parameter, string Parameter2, string Parameter3)
         {
             switch (Parameter)
             {

@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace CommandConsole.Commands
+namespace CommandConsole
 {
     internal class CommandInfo
     {

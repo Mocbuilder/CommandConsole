@@ -19,7 +19,7 @@ namespace CommandConsole.Commands
 
         }
 
-        public void Execute(string Parameter)
+        public void Execute(string Parameter, string Parameter2, string Parameter3)
         {
             if (Parameter != "v4" && Parameter != "v6")
             {

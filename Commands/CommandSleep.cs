@@ -12,7 +12,7 @@ namespace CommandConsole.Commands
 
         public string HelpText => "sleep-[any valid number] -> wait for specified time in seconds. Mainly used in scripting";
 
-        public void Execute(string Parameter)
+        public void Execute(string Parameter, string Parameter2, string Parameter3)
         {
             if (int.TryParse(Parameter, out int inputTime))
             {

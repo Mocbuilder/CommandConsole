@@ -12,7 +12,7 @@ namespace CommandConsole.Commands
 
         public string HelpText => "clear -> Clears the console";
 
-        public void Execute(string Parameter)
+        public void Execute(string Parameter, string Parameter2, string Parameter3)
         {
             Console.Clear();
         }

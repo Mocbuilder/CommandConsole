@@ -12,7 +12,7 @@ namespace CommandConsole.Commands
 
         public string HelpText => "print-[Text to be printed] -> Prints specified text";
 
-        public void Execute(string Parameter)
+        public void Execute(string Parameter, string Parameter2, string Parameter3)
         {
             try
             {

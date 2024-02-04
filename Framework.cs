@@ -90,7 +90,19 @@ namespace CommandConsole
         }
         public VariableInfo GetVariable(string variableName)
         {
-            return Variables.Find(variable => variable.Name == variableName);
+            try
+            {
+                VariableInfo variableReturn = Variables.Find(variable => variable.Name == variableName);
+                return variableReturn;
+            }
+            catch (ArgumentNullException nullEx)
+            {
+                throw new Exception("Get-Error: Variable probably zero: " + nullEx.Message);
+            }
+            catch(Exception ex) 
+            {
+                throw new Exception("Get-Error: Couldnt get variable: " + ex.Message);
+            }
         }
 
     }

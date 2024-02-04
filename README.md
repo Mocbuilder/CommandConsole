@@ -34,3 +34,5 @@ There are also some commands specifically made for scripting (although they work
 
 ## To-Do
 - add calc commands (addition, subtraction, multiplication, division) like ```add-[any number]-[any number]-[any number or null]``` 
+- add type recognition for scripting (somehow)
+- add boolean type for scripting

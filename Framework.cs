@@ -32,6 +32,7 @@ namespace CommandConsole
             Commands.Add(new CommandPrint(this));
             Commands.Add(new CommandSet(this));
             Commands.Add(new CommandGet(this));
+            Commands.Add(new CommandCalc());
         }
 
         public void HandleError(Exception e)
@@ -78,32 +79,45 @@ namespace CommandConsole
 
         internal void AddVariable(VariableInfo variableInfo)
         {
-            switch (variableInfo.Type)
+            try
             {
-                case "int":
-                case "string":
-                    break;
-                default:
-                    throw new Exception("Variable-Error: Invalid type");
+                switch (variableInfo.Type.ToLower())
+                {
+                    case "int":
+                        variableInfo.Value = Convert.ToInt32(variableInfo.Value);
+                        break;
+                    case "string":
+                        variableInfo.Value = Convert.ToString(variableInfo.Value);
+                        break;
+                    default:
+                        throw new Exception("Variable-Error: Invalid type");
+                }
+
+                Variables.Add(variableInfo);
             }
-            Variables.Add(variableInfo);
+            catch (Exception ex)
+            {
+                throw new Exception("Type-Error: " + ex.Message);
+            }
         }
+
         public VariableInfo GetVariable(string variableName)
         {
             try
             {
-                VariableInfo variableReturn = Variables.Find(variable => variable.Name == variableName);
-                return variableReturn;
+                VariableInfo variableGet = Variables.Find(variable => variable.Name == variableName);
+
+                if (variableGet == null)
+                {
+                    throw new Exception("Get-Error: Variable not found");
+                }
+
+                return variableGet;
             }
-            catch (ArgumentNullException nullEx)
+            catch (Exception ex)
             {
-                throw new Exception("Get-Error: Variable probably zero: " + nullEx.Message);
-            }
-            catch(Exception ex) 
-            {
-                throw new Exception("Get-Error: Couldnt get variable: " + ex.Message);
+                throw new Exception("Get-Error: Could not get variable: " + ex.Message);
             }
         }
-
     }
 }

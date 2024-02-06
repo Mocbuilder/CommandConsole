@@ -33,6 +33,7 @@ namespace CommandConsole
             Commands.Add(new CommandSet(this));
             Commands.Add(new CommandGet(this));
             Commands.Add(new CommandCalc());
+            Commands.Add(new CommandIfVal(this));
         }
 
         public void HandleError(Exception e)
@@ -88,6 +89,9 @@ namespace CommandConsole
                         break;
                     case "string":
                         variableInfo.Value = Convert.ToString(variableInfo.Value);
+                        break;
+                    case "bool":
+                        variableInfo.Value = Convert.ToBoolean(variableInfo.Value);
                         break;
                     default:
                         throw new Exception("Variable-Error: Invalid type");

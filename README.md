@@ -33,6 +33,4 @@ There are also some commands specifically made for scripting (although they work
 - ```get``` allows to get any existing variable and print it with type, name and value (Example: string testvariable = Hello World!)
 
 ## To-Do
-- add calc commands (addition, subtraction, multiplication, division) like ```add-[any number]-[any number]-[any number or null]``` 
-- add type recognition for scripting (somehow)
-- add boolean type for scripting
+- fix ifval command

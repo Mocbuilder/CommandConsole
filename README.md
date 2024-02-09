@@ -19,18 +19,18 @@ All available commands are:
 - ```script-[Valid file path to a text file]``` -> Run a script of commands
 - ```sleep-[any valid number]``` -> wait for specified time in seconds. Mainly used in scripting
 - ```print-[Text to be printed or 'var']-[variable name]``` -> Prints specified text or, if that is var-[any existing variable], prints the value of the variable
-- ```set-[type]-[name]-[value]``` -> Set a new variable as 'string' or 'int' and add a name and value
+- ```add-[type]-[name]-[value]``` -> Add a new variable as 'string' 'int' or 'bool' and add a name and value
 - ```get-[variable name]``` -> get any existing variable
+- ```calc-[type of calculation: add, sub, div, mul]-[first number]-[second number]``` -> Do some simple calculations with two numbers
+- ```rm-[Name of a existing variable]``` -> Remove any existing variable by name
+- ```setvalue-[Name of existing variable]-[New value]``` -> Set a new value to an already existing variable. New value must be of the same type as the old value
+- ```setname-[Name of a existing variable]-[New name of that variable]``` -> Set the name of any existing variable to a new name
 
 ## Scripting
 Scripting is done in a text file, and is basically a list of commands.
 Per line should be one command, and the syntax is exactly the same as when executing the commands in the console itself.
-This is mainly usefull when you are trying to run a set of commands again and again without typing them all-over.
-There are also some commands specifically made for scripting (although they work in the console too):
-- ```sleep``` allows you to specify a time in seconds that the console will just stop
-- ```print``` allows you to print any text to the console
-- ```set``` allows to set a new variable with a type (either 'string' or 'int') and assign a name and value
-- ```get``` allows to get any existing variable and print it with type, name and value (Example: string testvariable = Hello World!)
+This is mainly usefull when you are trying to run a sequence of commands again and again without typing them all-over.
 
 ## To-Do
-- fix ifval command
+- think of more QoL improvments and scripting Commands
+- FIX NESTED ERROR MESSAGES!!!!!!

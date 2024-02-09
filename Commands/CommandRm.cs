@@ -10,7 +10,7 @@ namespace CommandConsole.Commands
     {
         public string Name => "rm";
 
-        public string HelpText => "rm-[Name of a existing variable] -> Delete any existing variable by name";
+        public string HelpText => "rm-[Name of a existing variable] -> Remove any existing variable by name";
 
         private Framework framework;
         public CommandRm(Framework inputFramework) 

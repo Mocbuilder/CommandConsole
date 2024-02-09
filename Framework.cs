@@ -3,8 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection.Metadata;
+using System.Runtime;
 using System.Text;
 using System.Threading.Tasks;
+using System.Xml.Linq;
 
 namespace CommandConsole
 {
@@ -12,6 +14,7 @@ namespace CommandConsole
     {
         public List<ICommand> Commands = new List<ICommand>();
         public List<VariableInfo> Variables = new List<VariableInfo>();
+
         public Framework()
         {
             AddCommandsToList();   
@@ -30,10 +33,11 @@ namespace CommandConsole
             Commands.Add(new CommandScript(this));
             Commands.Add(new CommandSleep());
             Commands.Add(new CommandPrint(this));
-            Commands.Add(new CommandSet(this));
+            Commands.Add(new CommandAdd(this));
             Commands.Add(new CommandGet(this));
             Commands.Add(new CommandCalc());
-            Commands.Add(new CommandIfVal(this));
+            Commands.Add(new CommandRm(this));
+            Commands.Add(new CommandSetValue(this));
         }
 
         public void HandleError(Exception e)
@@ -80,29 +84,7 @@ namespace CommandConsole
 
         internal void AddVariable(VariableInfo variableInfo)
         {
-            try
-            {
-                switch (variableInfo.Type.ToLower())
-                {
-                    case "int":
-                        variableInfo.Value = Convert.ToInt32(variableInfo.Value);
-                        break;
-                    case "string":
-                        variableInfo.Value = Convert.ToString(variableInfo.Value);
-                        break;
-                    case "bool":
-                        variableInfo.Value = Convert.ToBoolean(variableInfo.Value);
-                        break;
-                    default:
-                        throw new Exception("Variable-Error: Invalid type");
-                }
-
-                Variables.Add(variableInfo);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Type-Error: " + ex.Message);
-            }
+            Variables.Add(variableInfo);
         }
 
         public VariableInfo GetVariable(string variableName)
@@ -122,6 +104,55 @@ namespace CommandConsole
             {
                 throw new Exception("Get-Error: Could not get variable: " + ex.Message);
             }
+        }
+
+        public void DeleteVariable(string variableName)
+        {
+            try
+            {
+                Variables.Remove(GetVariable(variableName));
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("RM-Error: Couldnt delete variable: " + ex.Message);
+            }
+        }
+
+        public void SetVariableValue(string variableName, string newValue)
+        {
+            string variableType = GetVariable(variableName).Type;
+            try
+            {
+                DeleteVariable(variableName);
+                try
+                {
+                    switch (variableType)
+                    {
+                        case "string":
+                            AddVariable(new StringInfo(variableType, variableName, newValue));
+                            break;
+                        case "int":
+                            int newInt = Convert.ToInt32(newValue);
+                            AddVariable(new IntInfo(variableType, variableName, newInt));
+                            break;
+                        case "bool":
+                            bool newBool = Convert.ToBoolean(newValue);
+                            AddVariable(new BoolInfo(variableType, variableName, newBool));
+                            break;
+                        default:
+                            throw new Exception("Variable-Error: Invalid type");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Variable-Error: Invalid type: " + ex.Message);
+                }
+            }
+            catch(Exception ex)
+            {
+                throw new Exception("Variable-Error: Couldnt set new variable value: " + ex.Message);
+            }
+
         }
     }
 }

@@ -50,7 +50,7 @@ namespace CommandConsole.Commands
 
                 if (variable != null)
                 {
-                    Console.WriteLine(variable.Value);
+                    Console.WriteLine(variable.GetValueAsString());
                 }
                 else
                 {

@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace CommandConsole
 {
-    internal class VariableInfo
+    internal abstract class VariableInfo
     {
         public string Name { get; set; }
         public string Type { get; set; }
-        public object Value { get; set; }
 
-        public VariableInfo(string type, string name, string value)
+        public VariableInfo(string type, string name)
         {
             Name = name;
             Type = type;
-            Value = value;
         }
+
+        public abstract string GetValueAsString();
     }
 }

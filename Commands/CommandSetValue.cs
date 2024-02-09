@@ -8,9 +8,9 @@ namespace CommandConsole.Commands
 {
     internal class CommandSetValue : ICommand
     {
-        public string Name => "setval";
+        public string Name => "setvalue";
 
-        public string HelpText => "setval-[Name of existing variable]-[New value] -> Set a new value to an already existing variable. New value must be of the same type as the old value";
+        public string HelpText => "setvalue-[Name of existing variable]-[New value] -> Set a new value to an already existing variable. New value must be of the same type as the old value";
 
         private Framework framework;
 
@@ -22,6 +22,7 @@ namespace CommandConsole.Commands
         {
             var oldValue = framework.GetVariable(Parameter).GetValueAsString();
             framework.SetVariableValue(Parameter, Parameter2);
+            Console.WriteLine($"Changed {Parameter} = {oldValue} to {Parameter} = {Parameter2}");
         }
     }
 }

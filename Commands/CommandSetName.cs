@@ -11,10 +11,16 @@ namespace CommandConsole.Commands
         public string Name => "setname";
 
         public string HelpText => "setname-[Name of a existing variable]-[New name of that variable] -> Set the name of any existing variable to a new name";
+        private Framework framework;
 
+        public CommandSetName(Framework inputFramework)
+        {
+            framework = inputFramework;
+        }
         public void Execute(string Parameter, string Parameter2, string Parameter3)
         {
-            throw new NotImplementedException();
+            framework.SetVariableName(Parameter, Parameter2);
+            Console.WriteLine($"Variable {Parameter} changed to {Parameter2}");
         }
     }
 }

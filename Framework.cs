@@ -38,6 +38,7 @@ namespace CommandConsole
             Commands.Add(new CommandCalc());
             Commands.Add(new CommandRm(this));
             Commands.Add(new CommandSetValue(this));
+            Commands.Add(new CommandSetName(this));
         }
 
         public void HandleError(Exception e)
@@ -129,7 +130,8 @@ namespace CommandConsole
                     switch (variableType)
                     {
                         case "string":
-                            AddVariable(new StringInfo(variableType, variableName, newValue));
+                            string newString = Convert.ToString(newValue);
+                            AddVariable(new StringInfo(variableType, variableName, newString));
                             break;
                         case "int":
                             int newInt = Convert.ToInt32(newValue);
@@ -151,6 +153,43 @@ namespace CommandConsole
             catch(Exception ex)
             {
                 throw new Exception("Variable-Error: Couldnt set new variable value: " + ex.Message);
+            }
+        }
+
+        public void SetVariableName(string oldName, string newName)
+        {
+            string variableType = GetVariable(oldName).Type;
+            var variableValue = GetVariable(oldName).GetValueAsString();
+            try
+            {
+                DeleteVariable(oldName);
+                try
+                {
+                    switch (variableType)
+                    {
+                        case "string":
+                            AddVariable(new StringInfo(variableType, newName, variableValue));
+                            break;
+                        case "int":
+                            int newInt = Convert.ToInt32(variableValue);
+                            AddVariable(new IntInfo(variableType, newName, newInt));
+                            break;
+                        case "bool":
+                            bool newBool = Convert.ToBoolean(variableValue);
+                            AddVariable(new BoolInfo(variableType, newName, newBool));
+                            break;
+                        default:
+                            throw new Exception("Variable-Error: Invalid name");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    throw new Exception("Variable-Error: Invalid name: " + ex.Message);
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Variable-Error: Couldnt set new variable name: " + ex.Message);
             }
 
         }

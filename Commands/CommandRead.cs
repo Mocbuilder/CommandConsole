@@ -12,13 +12,12 @@ namespace CommandConsole.Commands
 
         public string HelpText => "read-[Type of new variable]-[Name of new variable]-[Message to be printed before the input] -> Creates a new variable and puts the next userinput as value, while printing a message to the user";
 
-        private Framework asdframework;
+        private Framework framework;
 
         public CommandRead(Framework inputFramework)
         {
-            inputFramework = asdframework;
+            framework = inputFramework;
         }
-    
         public void Execute(string Parameter, string Parameter2, string Parameter3)
         {
             Console.WriteLine(Parameter3);
@@ -26,15 +25,15 @@ namespace CommandConsole.Commands
             switch (Parameter)
             {
                 case "string":
-                    asdframework.AddVariable(new StringInfo(Parameter, Parameter2, userInput));
+                    framework.AddVariable(new StringInfo(Parameter, Parameter2, userInput));
                     break;
                 case "int":
                     int intValue = Convert.ToInt32(userInput);
-                    asdframework.AddVariable(new IntInfo(Parameter, Parameter2, intValue));
+                    framework.AddVariable(new IntInfo(Parameter, Parameter2, intValue));
                     break;
                 case "bool":
                     bool boolValue = Convert.ToBoolean(userInput);
-                    asdframework.AddVariable(new BoolInfo(Parameter, Parameter2, boolValue));
+                    framework.AddVariable(new BoolInfo(Parameter, Parameter2, boolValue));
                     break;
                 default:
                     throw new Exception("Couldnt add new variable");

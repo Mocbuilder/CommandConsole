@@ -41,6 +41,7 @@ namespace CommandConsole
             Commands.Add(new CommandSetName(this));
             Commands.Add(new CommandProcess());
             Commands.Add(new CommandKill());
+            Commands.Add(new CommandRead(this));
         }
 
         public void HandleError(Exception e)

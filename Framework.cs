@@ -14,6 +14,7 @@ namespace CommandConsole
     {
         public List<ICommand> Commands = new List<ICommand>();
         public List<VariableInfo> Variables = new List<VariableInfo>();
+        public Dictionary<string, ICommand> CommandAliases = new Dictionary<string, ICommand>();
 
         public Framework()
         {
@@ -42,7 +43,10 @@ namespace CommandConsole
             Commands.Add(new CommandProcess());
             Commands.Add(new CommandKill());
             Commands.Add(new CommandRead(this));
+            Commands.Add(new CommandAlias(this));
+
         }
+
 
         public void HandleError(Exception e)
         {
@@ -70,7 +74,17 @@ namespace CommandConsole
             try
             {
                 var (cmd, param, param2, param3) = ParseCommand(userInput);
-                var command = Commands.FirstOrDefault(x => x.Name == cmd);
+                ICommand command = null;
+
+                if (CommandAliases.ContainsKey(cmd))
+                {
+                    command = CommandAliases[cmd];
+                }
+                else
+                {
+                    command = Commands.FirstOrDefault(x => x.Name == cmd);
+                }
+
                 if (command != null)
                 {
                     command.Execute(param, param2, param3);
@@ -85,6 +99,7 @@ namespace CommandConsole
                 HandleError(ex);
             }
         }
+
 
         internal void AddVariable(VariableInfo variableInfo)
         {

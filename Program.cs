@@ -18,8 +18,12 @@ namespace CommandConsole
             while (true)
             {
                 userInput = Console.ReadLine();
-                framework.Execute(userInput);
+                if (userInput == null)
+                {
+                    throw new Exception("Input cant be empty");
+                }
 
+                framework.Execute(userInput);
             }
         }
 

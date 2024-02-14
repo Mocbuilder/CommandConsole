@@ -1,33 +1,40 @@
-﻿using Microsoft.CodeAnalysis.CSharp.Scripting;
-using Microsoft.CodeAnalysis.Scripting;
-using Microsoft.CodeAnalysis;
-using System;
-using System.IO;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
+﻿using CommandConsole;
 
-namespace CommandConsole.Commands
+internal class CommandScript : ICommand
 {
-    internal class CommandScript : ICommand
+    private Framework framework;
+
+    public CommandScript(Framework framework)
     {
-        private Framework framework;
+        this.framework = framework;
+    }
 
-        public CommandScript(Framework framework)
+    public string Name => "script";
+
+    public string HelpText => "script-[Valid file path to a txt file]";
+
+    public void Execute(string Parameter, string Parameter2, string Parameter3)
+    {
+        foreach (var line in File.ReadAllLines(Parameter))
         {
-            this.framework = framework;
-        }
-
-        public string Name => "script";
-
-        public string HelpText => "script-[Valid file path to a C# file]";
-
-        public void Execute(string Parameter, string Parameter2, string Parameter3)
-        { 
-            foreach(var line in File.ReadAllLines(Parameter))
+            string ToExecute = CheckForComment(line);
+            if (ToExecute != null)
             {
-                framework.Execute(line);
-            } 
+                framework.Execute(ToExecute);
+            }
         }
+    }
+
+    public string CheckForComment(string line)
+    {
+        string toCheck = line.TrimStart();
+
+        if (string.IsNullOrWhiteSpace(toCheck))
+            return null;
+
+        if (!toCheck.StartsWith("//"))
+            return toCheck;
+
+        return null;
     }
 }

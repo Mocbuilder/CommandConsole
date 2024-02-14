@@ -25,11 +25,17 @@ All available commands are:
 - ```rm-[Name of a existing variable]``` -> Remove any existing variable by name
 - ```setvalue-[Name of existing variable]-[New value]``` -> Set a new value to an already existing variable. New value must be of the same type as the old value
 - ```setname-[Name of a existing variable]-[New name of that variable]``` -> Set the name of any existing variable to a new name
+- ```prcs``` -> List all currently running processes
+- ```kill-[Name of any running process]``` -> Terminates the specified process. Could need Admin priviliges to execute properly
+- ```read-[Type of new variable]-[Name of new variable]-[Message to be printed before the input]``` -> Creates a new variable and puts the next userinput as value, while printing a message to the user
+- ```alias-[Command you want to alias]-[New command]``` -> Set the keyword for any command
 
 ## Scripting
 Scripting is done in a text file, and is basically a list of commands.
 Per line should be one command, and the syntax is exactly the same as when executing the commands in the console itself.
 This is mainly usefull when you are trying to run a sequence of commands again and again without typing them all-over.
+Comments are line based, which means that a comment is always one full line. They are initiated with "//".
+An example script is provided in the "ExampleScript.txt" file.
 
 ## To-Do
 - think of more QoL improvments and scripting Commands

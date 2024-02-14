@@ -54,12 +54,12 @@ namespace CommandConsole.Commands
                     }
                     else
                     {
-                        throw new Exception("API-Error: " + tenresponse.StatusCode);
+                        throw new Exception("Couldn't reach the API");
                     }
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception($"Failed to get jokes from API: {ex.Message}");
+                    throw new Exception($"Failed to get jokes from API");
                 }
             }
 
@@ -79,12 +79,12 @@ namespace CommandConsole.Commands
                 }
                 else
                 {
-                    throw new Exception("API-Error: " + response.StatusCode);
+                    throw new Exception("Couldn't reach the API");
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception($"Failed to get joke from API: {ex.Message}");
+                throw new Exception($"Failed to get joke from API");
             }
         }
     }

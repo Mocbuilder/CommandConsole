@@ -23,6 +23,13 @@ namespace CommandConsole.Commands
                 Console.WriteLine($"{variable.Type} {variable.Name} = {variable.GetValueAsString()}");
                 return;
             }
+
+            if (variable == null)
+            {
+                throw new Exception("Variable doesn't exist");
+            }
+
+            throw new Exception("Can't get variable. It probably doesnt exist");
         }
     }
 }

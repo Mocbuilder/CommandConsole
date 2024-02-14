@@ -20,7 +20,7 @@ namespace CommandConsole.Commands
             }
             else
             {
-                throw new Exception("Sleep-Error: Invalid number given as parameter");
+                throw new Exception("Invalid number given as parameter");
             }
         }
     }

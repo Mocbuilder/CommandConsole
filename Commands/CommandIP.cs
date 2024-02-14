@@ -22,10 +22,7 @@ namespace CommandConsole.Commands
         public void Execute(string Parameter, string Parameter2, string Parameter3)
         {
             if (Parameter != "v4" && Parameter != "v6")
-            {
-                throw new Exception("IP-Error: Invalid format for 'ip' command. Use like this: 'ip- [v4] [-v6]'");
-                return;
-            }
+                throw new Exception("Invalid format for 'ip' command. Use like this: 'ip- [-v4] [-v6]'");
 
             if (Parameter == "v4")
             {
@@ -42,9 +39,9 @@ namespace CommandConsole.Commands
                         }
                     }
                 }
-                catch (Exception ex)
+                catch
                 {
-                    throw new Exception($"IPv4-Error: {ex.Message}");
+                    throw new Exception("Couldn't get IPv4 address");
                 }
                 return;
             }
@@ -64,7 +61,7 @@ namespace CommandConsole.Commands
             }
             catch (Exception ex)
             {
-                throw new Exception($"IPv6-Error: {ex.Message}");
+                throw new Exception($"Couldn't get IPv6 address");
             }
         }
     }

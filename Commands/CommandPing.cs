@@ -23,8 +23,7 @@ namespace CommandConsole.Commands
             }
             else
             {
-                throw new Exception("Ping-Error: Invalid IPv4 address format");
-                return;
+                throw new Exception("Invalid IPv4 address format");
             }
 
             try
@@ -43,8 +42,7 @@ namespace CommandConsole.Commands
             }
             catch (PingException ex)
             {
-                throw new Exception($"Ping-Error: Error during ping: {ex.Message}");
-                return;
+                throw new Exception($"Error during ping: {ex.Message}");
             }
         }
     }

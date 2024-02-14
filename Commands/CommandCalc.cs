@@ -15,7 +15,7 @@ namespace CommandConsole.Commands
         public void Execute(string Parameter, string Parameter2, string Parameter3)
         {
             if (Parameter2 == null || Parameter3 == null)
-                throw new Exception("Calc-Error: Not enough numbers given.");
+                throw new Exception("Not enough numbers given.");
 
             int number1 = Convert.ToInt32(Parameter2);
             int number2 = Convert.ToInt32(Parameter3);
@@ -38,7 +38,7 @@ namespace CommandConsole.Commands
                     Console.WriteLine($"{number1}*{number2} = " + sumReturn);
                     break;
                 default:
-                    throw new Exception("Calc-Error: Couldnt calculate");
+                    throw new Exception("Couldnt calculate");
             }
         }
     }

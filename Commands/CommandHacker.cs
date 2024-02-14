@@ -22,7 +22,7 @@ namespace CommandConsole.Commands
         static ConsoleColor basecolor = ConsoleColor.Green;
         static ConsoleColor fadedcolor = ConsoleColor.White;
 
-        static string endText = "COLLEGE CODE";
+        static string endText = "";
 
         static char Asciicharacters
         {
@@ -68,13 +68,13 @@ namespace CommandConsole.Commands
                 }
                 else
                 {
-                    throw new Exception("Hacker-Error: Invalid color entered");
+                    throw new Exception("Invalid color entered");
                     return;
                 }
             }
             catch
             {
-                throw new Exception("Hacker-Error: Couldnt hack the Mainframe-Firewall-Kernel-Code");
+                throw new Exception("Couldnt hack the Mainframe trough the Firewall-Kernel's Code");
                 return;
             }
             Console.WindowLeft = Console.WindowTop = 0;

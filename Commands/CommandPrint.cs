@@ -38,7 +38,7 @@ namespace CommandConsole.Commands
             }
             catch (Exception ex)
             {
-                throw new Exception("Print-Error: Cant print input" + ex.Message);
+                throw new Exception("Cant print input");
             }
         }
 
@@ -54,12 +54,12 @@ namespace CommandConsole.Commands
                 }
                 else
                 {
-                    throw new Exception($"Print-Error: Variable {variableName} not found.");
+                    throw new Exception($"Variable {variableName} not found.");
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception($"Print-Error: Cant print variable {variableName}: {ex.Message}");
+                throw new Exception($"Cant print variable {variableName}");
             }
         }
 

@@ -42,7 +42,7 @@ namespace CommandConsole.Commands
                     }
                     break;
                 default:
-                    throw new Exception("SysInfo-Error: Invalid parameter. Use 'help' command for a list of all commands and parameters");
+                    throw new Exception("Invalid parameter. Use 'help' command for a list of all commands and parameters");
                     break;
             }
         }

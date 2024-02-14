@@ -20,6 +20,36 @@ namespace CommandConsole.Commands
 
         public void Execute(string Parameter, string Parameter2, string Parameter3)
         {
+            if(Parameter == "all") 
+            {
+                ConsoleColor currentColor = Console.ForegroundColor;
+                Console.ForegroundColor = ConsoleColor.Yellow;
+                Console.WriteLine("Do you want to delete all variables ? Enter (y)es or (n)o");
+                string askDeletion = Console.ReadLine();
+
+                if(askDeletion != "y" && askDeletion != "n")
+                    Console.WriteLine("No valid answer given, therefore defaulting to no");
+
+                if (askDeletion == "y")
+                {
+                    Console.WriteLine("Deleted all variables: ");
+                    foreach (var variable in framework.Variables)
+                    {
+                        Console.WriteLine("Deleted " + variable.Name);
+                    }
+
+                    framework.Variables.Clear();
+                }
+
+                if (askDeletion == "n")
+                {
+                    Console.WriteLine("Stopped command 'rm-all' from executing");
+                }
+
+                Console.ForegroundColor = currentColor;
+                return;
+            }
+
             try
             {
                 framework.DeleteVariable(Parameter);
@@ -31,7 +61,7 @@ namespace CommandConsole.Commands
             }
             catch (Exception ex)
             {
-                throw new Exception("RM-Error: Couldnt delete variable: " + ex.Message);
+                throw new Exception("Couldnt delete variable: " + ex.Message);
             }
         }
     }

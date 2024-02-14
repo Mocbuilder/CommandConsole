@@ -33,7 +33,7 @@ namespace CommandConsole.Commands
 
             if (variableExists)
             {
-                throw new Exception("Add-Error: Variable already exists");
+                throw new Exception("Variable already exists");
             }
 
             try
@@ -57,7 +57,7 @@ namespace CommandConsole.Commands
             }
             catch (Exception ex)
             {
-                throw new Exception("Add-Error: Invalid type: " + ex.Message);
+                throw new Exception("Invalid type of variable");
             }
         }
 

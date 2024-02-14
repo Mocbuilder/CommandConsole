@@ -1,6 +1,6 @@
 # CommandConsole
 A command-based console. 
-Made to practice command-variable interactions.
+It is basically a command parser with extra features (scripting, permanent variables, etc...)
 
 ## Syntax
 The syntax is really simple. First, all commands are uncapitalised. Second, if a command takes a variable, it is added with a ```-``` and then the variable, with no spaces. Command-specific examples are in the 'Commands' section.

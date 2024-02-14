@@ -39,4 +39,4 @@ An example script is provided in the "ExampleScript.txt" file.
 
 ## To-Do
 - think of more QoL improvments and scripting Commands
-- FIX NESTED ERROR MESSAGES!!!!!!
+- Nested Error messages are fixed, but ```Framework.GetVariable()``` is used alone and inside other methods, and when used inside it nests the error messages, probably applys to ```Framework.DeleteVariable()``` too

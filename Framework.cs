@@ -133,7 +133,7 @@ namespace CommandConsole
             }
             catch(Exception ex)
             {
-                throw new Exception("Couldnt delete variable");
+                throw new Exception("Couldnt delete variable ");
             }
         }
 

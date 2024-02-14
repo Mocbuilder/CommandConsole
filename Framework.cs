@@ -114,14 +114,14 @@ namespace CommandConsole
 
                 if (variableGet == null)
                 {
-                    throw new Exception("Get-Error: Variable not found");
+                    throw new Exception("Variable not found");
                 }
 
                 return variableGet;
             }
             catch (Exception ex)
             {
-                throw new Exception("Get-Error: Could not get variable: " + ex.Message);
+                throw new Exception("Could not get variable");
             }
         }
 
@@ -133,7 +133,7 @@ namespace CommandConsole
             }
             catch(Exception ex)
             {
-                throw new Exception("RM-Error: Couldnt delete variable: " + ex.Message);
+                throw new Exception("Couldnt delete variable");
             }
         }
 
@@ -160,17 +160,17 @@ namespace CommandConsole
                             AddVariable(new BoolInfo(variableType, variableName, newBool));
                             break;
                         default:
-                            throw new Exception("Variable-Error: Invalid type");
+                            throw new Exception("Invalid type");
                     }
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Variable-Error: Invalid type: " + ex.Message);
+                    throw new Exception("Invalid type");
                 }
             }
             catch(Exception ex)
             {
-                throw new Exception("Variable-Error: Couldnt set new variable value: " + ex.Message);
+                throw new Exception("Couldnt set new variable value");
             }
         }
 
@@ -197,17 +197,17 @@ namespace CommandConsole
                             AddVariable(new BoolInfo(variableType, newName, newBool));
                             break;
                         default:
-                            throw new Exception("Variable-Error: Invalid name");
+                            throw new Exception("Invalid name");
                     }
                 }
                 catch (Exception ex)
                 {
-                    throw new Exception("Variable-Error: Invalid name: " + ex.Message);
+                    throw new Exception("Invalid name");
                 }
             }
             catch (Exception ex)
             {
-                throw new Exception("Variable-Error: Couldnt set new variable name: " + ex.Message);
+                throw new Exception("Couldnt set new variable name");
             }
 
         }

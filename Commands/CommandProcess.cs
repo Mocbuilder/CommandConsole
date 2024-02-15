@@ -13,7 +13,9 @@ namespace CommandConsole.Commands
 
         public string HelpText => "prcs -> List all currently running processes";
 
-        public void Execute(string Parameter, string Parameter2, string Parameter3)
+        public List<Type> ParameterTypes => new List<Type> ();
+
+        public void Execute(List<VariableInfo> inputParams)
         {
             Process[] processCollection = Process.GetProcesses();
             foreach (Process p in processCollection)

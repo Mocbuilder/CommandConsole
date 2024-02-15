@@ -11,7 +11,11 @@ namespace CommandConsole
     {
         public string Value { get; set; }
 
-        public StringInfo(string typeOf, string variableName, string value) : base(typeOf, variableName)
+        public StringInfo() : base(VariableType.String)
+        {
+        }
+
+        public StringInfo(string variableName, string value) : base(VariableType.String, variableName)
         {
             Value = value;
         }

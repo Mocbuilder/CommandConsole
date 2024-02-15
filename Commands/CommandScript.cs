@@ -12,10 +12,13 @@ internal class CommandScript : ICommand
     public string Name => "script";
 
     public string HelpText => "script-[Valid file path to a txt file]";
+    public List<Type> ParameterTypes => new List<Type> { typeof(StringInfo) };
 
-    public void Execute(string Parameter, string Parameter2, string Parameter3)
+    public void Execute(List<VariableInfo> inputParams)
     {
-        foreach (var line in File.ReadAllLines(Parameter))
+        StringInfo param = inputParams[0] as StringInfo;
+
+        foreach (var line in File.ReadAllLines(param.Value))
         {
             string ToExecute = CheckForComment(line);
             if (ToExecute != null)

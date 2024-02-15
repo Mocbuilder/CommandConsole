@@ -56,43 +56,66 @@ namespace CommandConsole
             Console.ForegroundColor = currentColor;
         }
 
-        public (string, string, string, string) ParseCommand(string input)
+        public (string, string) ParseCommand(string input)
         {
-            string[] inputArray = input.Split("-");
+            string[] inputArray = input.Split("-", 2);
 
             string cmd = inputArray[0];
 
-            string param = (inputArray.Length > 1) ? inputArray[1] : "";
-            string param2 = (inputArray.Length > 2) ? inputArray[2] : "";
-            string param3 = (inputArray.Length > 3) ? inputArray[3] : "";
+            string parameters = (inputArray.Length > 0) ? inputArray[1] : "";
 
-            return (cmd, param, param2, param3);
+            return (cmd, parameters);
+        }
+
+        public List<VariableInfo> ParseParameters(ICommand command, string input)
+        {
+            string[] inputArray = input.Split("-");
+            if(inputArray.Length != command.ParameterTypes.Count)
+                throw new Exception($"Invalid count of parameters. Type 'help' for a list of commands.");
+
+            List<VariableInfo> result = new List<VariableInfo>();
+            int varPos = 0;
+            foreach (var paramType in command.ParameterTypes)
+            {
+                string value = inputArray[varPos];
+                VariableInfo varTypeInfo = Activator.CreateInstance(paramType) as VariableInfo;
+                switch (varTypeInfo.Type)
+                {
+                    case VariableType.String:
+                        result.Add(new StringInfo("", value));
+                        break;
+                    case VariableType.Int:
+                        result.Add(new IntInfo("", Convert.ToInt32(value)));
+                        break;
+                    case VariableType.Bool:
+                        result.Add(new BoolInfo("", Convert.ToBoolean(value)));
+                        break;
+                    default:
+                        throw new Exception();
+                }
+                varPos++;
+            }
+            return result;
         }
 
         public void Execute(string userInput)
         {
             try
             {
-                var (cmd, param, param2, param3) = ParseCommand(userInput);
+                var (cmd, parameters) = ParseCommand(userInput);
+
                 ICommand command = null;
 
                 if (CommandAliases.ContainsKey(cmd))
-                {
                     command = CommandAliases[cmd];
-                }
                 else
-                {
-                    command = Commands.FirstOrDefault(x => x.Name == cmd);
-                }
+                   command = Commands.FirstOrDefault(x => x.Name == cmd);
 
-                if (command != null)
-                {
-                    command.Execute(param, param2, param3);
-                }
-                else
-                {
+                if (command == null)
                     throw new Exception($"Unknown command: {userInput}. Type 'help' for a list of commands.");
-                }
+
+                List<VariableInfo> paramInfos = ParseParameters(command, parameters);
+                // command.Execute(paramInfos);
             }
             catch (Exception ex)
             {
@@ -139,7 +162,7 @@ namespace CommandConsole
 
         public void SetVariableValue(string variableName, string newValue)
         {
-            string variableType = GetVariable(variableName).Type;
+            VariableType variableType = GetVariable(variableName).Type;
             try
             {
                 DeleteVariable(variableName);
@@ -147,15 +170,15 @@ namespace CommandConsole
                 {
                     switch (variableType)
                     {
-                        case "string":
+                        case VariableType.String:
                             string newString = Convert.ToString(newValue);
                             AddVariable(new StringInfo(variableType, variableName, newString));
                             break;
-                        case "int":
+                        case VariableType.Int:
                             int newInt = Convert.ToInt32(newValue);
                             AddVariable(new IntInfo(variableType, variableName, newInt));
                             break;
-                        case "bool":
+                        case VariableType.Bool:
                             bool newBool = Convert.ToBoolean(newValue);
                             AddVariable(new BoolInfo(variableType, variableName, newBool));
                             break;

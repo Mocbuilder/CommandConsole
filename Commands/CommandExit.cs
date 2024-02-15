@@ -12,7 +12,9 @@ namespace CommandConsole.Commands
 
         public string HelpText => "exit -> Quit the application";
 
-        public void Execute(string Parameter, string Parameter2, string Parameter3)
+        public List<Type> ParameterTypes => new List<Type> ();
+
+        public void Execute(List<VariableInfo> inputParams)
         {
             Environment.Exit(0);
         }

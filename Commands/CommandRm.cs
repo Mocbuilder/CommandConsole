@@ -12,15 +12,19 @@ namespace CommandConsole.Commands
 
         public string HelpText => "rm-[Name of a existing variable] -> Remove any existing variable by name";
 
+        public List<Type> ParameterTypes => new List<Type> { typeof(StringInfo)};
+
         private Framework framework;
         public CommandRm(Framework inputFramework) 
         {
             framework = inputFramework;
         }
 
-        public void Execute(string Parameter, string Parameter2, string Parameter3)
+        public void Execute(List<VariableInfo> inputParams)
         {
-            if(Parameter == "all") 
+            StringInfo param = inputParams[0] as StringInfo;
+
+            if (param.Value == "all") 
             {
                 ConsoleColor currentColor = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.Yellow;
@@ -52,11 +56,11 @@ namespace CommandConsole.Commands
 
             try
             {
-                framework.DeleteVariable(Parameter);
+                framework.DeleteVariable(param.Value);
 
                 ConsoleColor currentColor = Console.ForegroundColor;
                 Console.ForegroundColor = ConsoleColor.Yellow;
-                Console.WriteLine($"Deleted {Parameter}");
+                Console.WriteLine($"Deleted {param.Value}");
                 Console.ForegroundColor = currentColor;
             }
             catch (Exception ex)

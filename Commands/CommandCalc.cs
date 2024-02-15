@@ -12,30 +12,34 @@ namespace CommandConsole.Commands
 
         public string HelpText => "calc-[type of calculation: add, sub, div, mul]-[first number]-[second number] -> Do some simple calculations with two numbers";
 
-        public void Execute(string Parameter, string Parameter2, string Parameter3)
+        public List<Type> ParameterTypes => new List<Type> { typeof(StringInfo), typeof(IntInfo), typeof(IntInfo) };
+
+        public void Execute(List<VariableInfo> inputParams)
         {
-            if (Parameter2 == null || Parameter3 == null)
+            StringInfo param = inputParams[0] as StringInfo;
+            IntInfo param2 = inputParams[1] as IntInfo;
+            IntInfo param3 = inputParams[2] as IntInfo;
+
+            if (param2 == null || param3 == null)
                 throw new Exception("Not enough numbers given.");
 
-            int number1 = Convert.ToInt32(Parameter2);
-            int number2 = Convert.ToInt32(Parameter3);
-            switch (Parameter)
+            switch (param.Value)
             {
                 case "add":
-                    int sumReturn = number1 + number2;
-                    Console.WriteLine($"{number1} + {number2} = " + sumReturn);
+                    int sumReturn = param2.Value + param3.Value;
+                    Console.WriteLine($"{param2.Value} + {param3.Value} = " + sumReturn);
                     break;
                 case "sub":
-                    sumReturn = number1 - number2;
-                    Console.WriteLine($"{number1} - {number2} = " + sumReturn);
+                    sumReturn = param2.Value - param3.Value;
+                    Console.WriteLine($"{param2.Value} - {param3.Value} = " + sumReturn);
                     break;
                 case "div":
-                    sumReturn = number1 / number2;
-                    Console.WriteLine($"{number1}/{number2} = " + sumReturn);
+                    sumReturn = param2.Value / param3.Value;
+                    Console.WriteLine($"{param2.Value}/{param3.Value} = " + sumReturn);
                     break;
                 case "mul":
-                    sumReturn = number1 * number2;
-                    Console.WriteLine($"{number1}*{number2} = " + sumReturn);
+                    sumReturn = param2.Value * param3.Value;
+                    Console.WriteLine($"{param2.Value}*{param3.Value} = " + sumReturn);
                     break;
                 default:
                     throw new Exception("Couldnt calculate");

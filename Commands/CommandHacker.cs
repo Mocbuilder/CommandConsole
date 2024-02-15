@@ -37,8 +37,12 @@ namespace CommandConsole.Commands
             }
         }
 
-        public void Execute(string Parameter, string Parameter2, string Parameter3)
+        public List<Type> ParameterTypes => new List<Type> { typeof(StringInfo)};
+
+        public void Execute(List<VariableInfo> inputParams)
         {
+            StringInfo param = inputParams[0] as StringInfo;
+
             try
             {
                 Dictionary<string, ConsoleColor> colorMap = new Dictionary<string, ConsoleColor>
@@ -61,7 +65,7 @@ namespace CommandConsole.Commands
                 { "white", ConsoleColor.White }
                 };
 
-                if (colorMap.TryGetValue(Parameter.ToLower(), out ConsoleColor color))
+                if (colorMap.TryGetValue(param.Value.ToLower(), out ConsoleColor color))
                 {
                     Console.ForegroundColor = color;
                     basecolor = color;

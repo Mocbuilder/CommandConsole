@@ -12,9 +12,13 @@ namespace CommandConsole.Commands
 
         public string HelpText => "sleep-[any valid number] -> wait for specified time in seconds. Mainly used in scripting";
 
-        public void Execute(string Parameter, string Parameter2, string Parameter3)
+        public List<Type> ParameterTypes => new List<Type> { typeof(IntInfo)};
+
+        public void Execute(List<VariableInfo> inputParams)
         {
-            if (int.TryParse(Parameter, out int inputTime))
+            StringInfo param = inputParams[0] as StringInfo;
+
+            if (int.TryParse(param.Value, out int inputTime))
             {
                 Thread.Sleep(inputTime * 1000);
             }

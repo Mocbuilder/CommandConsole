@@ -12,17 +12,22 @@ namespace CommandConsole.Commands
 
         public string HelpText => "setvalue-[Name of existing variable]-[New value] -> Set a new value to an already existing variable. New value must be of the same type as the old value";
 
+        public List<Type> ParameterTypes => new List<Type> { typeof(StringInfo), typeof(StringInfo) };
+
         private Framework framework;
 
         public CommandSetValue(Framework inputFramework)
         {
             framework = inputFramework;
         }
-        public void Execute(string Parameter, string Parameter2, string Parameter3)
+        public void Execute(List<VariableInfo> inputParams)
         {
-            var oldValue = framework.GetVariable(Parameter).GetValueAsString();
-            framework.SetVariableValue(Parameter, Parameter2);
-            Console.WriteLine($"Changed {Parameter} = {oldValue} to {Parameter} = {Parameter2}");
+            StringInfo param = inputParams[0] as StringInfo;
+            StringInfo param2 = inputParams[1] as StringInfo;
+
+            var oldValue = framework.GetVariable(param.Value).GetValueAsString();
+            framework.SetVariableValue(param.Value, param2.Value);
+            Console.WriteLine($"Changed {param.Value} = {oldValue} to {param.Value} = {param2.Value}");
         }
     }
 }

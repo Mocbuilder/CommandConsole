@@ -13,55 +13,19 @@ namespace CommandConsole.Commands
         public string Name => "print";
 
         public string HelpText => "print-[Text to be printed or 'var']-[variable name] -> Prints specified text or, if that is var-[any existing variable], prints the value of the variable";
+
+        public List<Type> ParameterTypes => new List<Type> { typeof(StringInfo) };
+
         private Framework framework;
 
         public CommandPrint(Framework framework)
         {
             this.framework = framework;
         }
-        public void Execute(string Parameter, string Parameter2, string Parameter3)
+        public void Execute(List<VariableInfo> inputParams)
         {
-
-            if(Parameter == "var")
-            {
-                VariablePrint(Parameter2);
-                return;
-            }
-            NormalPrint(Parameter);
-        }
-
-        public void NormalPrint(string Parameter)
-        {
-            try
-            {
-                Console.WriteLine(Parameter);
-            }
-            catch (Exception ex)
-            {
-                throw new Exception("Cant print input");
-            }
-        }
-
-        public void VariablePrint(string variableName)
-        {
-            try
-            {
-                VariableInfo variable = framework.GetVariable(variableName);
-
-                if (variable != null)
-                {
-                    Console.WriteLine(variable.GetValueAsString());
-                }
-                else
-                {
-                    throw new Exception($"Variable {variableName} not found.");
-                }
-            }
-            catch (Exception ex)
-            {
-                throw new Exception($"Cant print variable {variableName}");
-            }
-        }
-
+            StringInfo param = inputParams[0] as StringInfo;
+            Console.WriteLine(param.Value);
+        } 
     }
 }

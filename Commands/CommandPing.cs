@@ -14,10 +14,14 @@ namespace CommandConsole.Commands
 
         public string HelpText => "ping-[Any valid IPv4 address] -> Pings the specified IP address";
 
+        public List<Type> ParameterTypes => new List<Type> { typeof(StringInfo)};
+
         public CommandPing() { }
-        public void Execute(string Parameter, string Parameter2, string Parameter3)
+        public void Execute(List<VariableInfo> inputParams)
         {
-            if (IPAddress.TryParse(Parameter, out IPAddress ipAddress) && ipAddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+            StringInfo param = inputParams[0] as StringInfo;
+
+            if (IPAddress.TryParse(param.Value, out IPAddress ipAddress) && ipAddress.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
             {
                 Console.WriteLine($"Valid IPv4 address: {ipAddress}");
             }

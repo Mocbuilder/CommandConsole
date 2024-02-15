@@ -11,7 +11,11 @@ namespace CommandConsole
     {
         public int Value { get; set; }
 
-        public IntInfo(string typeOf, string variableName, int value) : base(typeOf, variableName)
+        public IntInfo() : base(VariableType.Int)
+        {
+        }
+
+        public IntInfo(string variableName, int value) : base(VariableType.Int, variableName)
         {
             Value = value;
         }

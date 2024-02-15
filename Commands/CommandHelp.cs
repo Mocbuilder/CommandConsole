@@ -12,6 +12,8 @@ namespace CommandConsole.Commands
 
         public string HelpText => "help -> Lists all available commands";
 
+        public List<Type> ParameterTypes => new List<Type> ();
+
         private List<ICommand> allCommands;
 
         public CommandHelp(List<ICommand> allCommands)
@@ -19,7 +21,7 @@ namespace CommandConsole.Commands
             this.allCommands = allCommands;
         }
 
-        public void Execute(string Parameter, string Parameter2, string Parameter3)
+        public void Execute(List<VariableInfo> inputParams)
         {
             Console.WriteLine("All available commands are:");
 

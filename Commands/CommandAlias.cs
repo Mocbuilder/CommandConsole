@@ -8,6 +8,7 @@ namespace CommandConsole.Commands
         public string Name => "alias";
 
         public string HelpText => "alias-[Command you want to alias]-[New command] -> Set the keyword for any command";
+        public List<Type> ParameterTypes => new List<Type> { typeof(StringInfo), typeof(StringInfo) };
 
         private Framework framework;
 
@@ -16,17 +17,20 @@ namespace CommandConsole.Commands
             framework = inputFramework;
         }
 
-        public void Execute(string Parameter, string Parameter2, string Parameter3)
+        public void Execute(List<VariableInfo> inputParams)
         {
-            var commandToAlias = framework.Commands.FirstOrDefault(x => x.Name == Parameter);
+            StringInfo param = inputParams[0] as StringInfo;
+            StringInfo param2 = inputParams[1] as StringInfo;
+
+            var commandToAlias = framework.Commands.FirstOrDefault(x => x.Name == param.Value);
             if (commandToAlias != null)
             {
-                framework.CommandAliases[Parameter2] = commandToAlias;
-                Console.WriteLine($"Alias '{Parameter2}' for command '{Parameter}' set successfully.");
+                framework.CommandAliases[param2.Value] = commandToAlias;
+                Console.WriteLine($"Alias '{param2.Value}' for command '{param.Value}' set successfully.");
             }
             else
             {
-                throw new Exception($"Unknown command to be aliased: {Parameter}. Type 'help' for a list of commands.");
+                throw new Exception($"Unknown command to be aliased: {param.Value}. Type 'help' for a list of commands.");
 
             }
         }

@@ -11,7 +11,11 @@ namespace CommandConsole
     {
         public bool Value { get; set; }
 
-        public BoolInfo(string typeOf, string variableName, bool value) : base(typeOf, variableName)
+        public BoolInfo() : base(VariableType.Bool)
+        {
+        }
+
+        public BoolInfo(string variableName, bool value) : base(VariableType.Bool, variableName)
         {
             Value = value;
         }

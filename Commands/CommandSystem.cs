@@ -20,9 +20,13 @@ namespace CommandConsole.Commands
         "[net -> Get .Net Framework information] " +
         "[programs -> Get all installed programs (from HKEY_LOCAL_MACHINE)]";
 
-        public void Execute(string Parameter, string Parameter2, string Parameter3)
+        public List<Type> ParameterTypes => new List<Type> { typeof(StringInfo)};
+
+        public void Execute(List<VariableInfo> inputParams)
         {
-            switch (Parameter)
+            StringInfo param = inputParams[0] as StringInfo;
+
+            switch (param.Value)
             {
                 case "hw":
                     PrintHW();

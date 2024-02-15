@@ -14,17 +14,21 @@ namespace CommandConsole.Commands
 
         public string HelpText => "ip [-v4] [-v6] -> Get either the IPv4 or IPv6 addresses.";
 
+        public List<Type> ParameterTypes => new List<Type> { typeof(StringInfo)};
+
         public CommandIP()
         {
 
         }
 
-        public void Execute(string Parameter, string Parameter2, string Parameter3)
+        public void Execute(List<VariableInfo> inputParams)
         {
-            if (Parameter != "v4" && Parameter != "v6")
+            StringInfo param = inputParams[0] as StringInfo;
+
+            if (param.Value != "v4" && param.Value != "v6")
                 throw new Exception("Invalid format for 'ip' command. Use like this: 'ip- [-v4] [-v6]'");
 
-            if (Parameter == "v4")
+            if (param.Value == "v4")
             {
                 try
                 {

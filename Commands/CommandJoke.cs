@@ -26,10 +26,14 @@ namespace CommandConsole.Commands
 
         public string HelpText => "joke [-ten] -> Get a random joke, or optionally ten random jokes.";
 
-        public async void Execute(string Parameter, string Parameter2, string Parameter3)
+        public List<Type> ParameterTypes => new List<Type> { typeof(StringInfo)};
+
+        public async void Execute(List<VariableInfo> inputParams)
         {
+            StringInfo param = inputParams[0] as StringInfo;
+
             string apiUrl = "https://official-joke-api.appspot.com/random_joke";
-            if (Parameter == "ten")
+            if (param.Value == "ten")
             {
                 apiUrl = "https://official-joke-api.appspot.com/jokes/ten";
 

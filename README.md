@@ -40,7 +40,7 @@ An example script is provided in the "ExampleScript.txt" file.
 ## To-Do
 - Let variables be able to be used in commands that take any parameters (maybe use ```Framework.Getvariable()``` ?)
 - Nested Error messages are fixed, but ```Framework.GetVariable()``` is used alone and inside other methods, and when used inside it nests the error messages, probably applys to ```Framework.DeleteVariable()``` too
-- - think of more QoL improvments and scripting Commands
+- think of more QoL improvments and scripting Commands
 
 ## Credits
 Idea, Design and Programming			Mocbuilder (Mocbuilder Coding Creations) aka Me

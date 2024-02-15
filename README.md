@@ -38,5 +38,13 @@ Comments are line based, which means that a comment is always one full line. The
 An example script is provided in the "ExampleScript.txt" file.
 
 ## To-Do
-- think of more QoL improvments and scripting Commands
+- Let variables be able to be used in commands that take any parameters (maybe use ```Framework.Getvariable()``` ?)
 - Nested Error messages are fixed, but ```Framework.GetVariable()``` is used alone and inside other methods, and when used inside it nests the error messages, probably applys to ```Framework.DeleteVariable()``` too
+- - think of more QoL improvments and scripting Commands
+
+## Credits
+Idea, Design and Programming			Mocbuilder (Mocbuilder Coding Creations) aka Me
+
+Base-Code of the hacker-command			CollegeCode (https://www.youtube.com/watch?v=eWceJNkxbdU)
+
+Special Thanks to rmoc81 for helping me with the programming.

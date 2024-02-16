@@ -62,15 +62,15 @@ namespace CommandConsole
 
             string cmd = inputArray[0];
 
-            string parameters = (inputArray.Length > 0) ? inputArray[1] : "";
+            string parameters = (inputArray.Length > 1) ? inputArray[1] : string.Empty;
 
             return (cmd, parameters);
         }
 
         public List<VariableInfo> ParseParameters(ICommand command, string input)
         {
-            string[] inputArray = input.Split("-");
-            if(inputArray.Length != command.ParameterTypes.Count)
+            string[] inputArray = input.Split("-", StringSplitOptions.RemoveEmptyEntries);
+            if (inputArray.Length != command.ParameterTypes.Count)
                 throw new Exception($"Invalid count of parameters. Type 'help' for a list of commands.");
 
             List<VariableInfo> result = new List<VariableInfo>();
@@ -115,7 +115,7 @@ namespace CommandConsole
                     throw new Exception($"Unknown command: {userInput}. Type 'help' for a list of commands.");
 
                 List<VariableInfo> paramInfos = ParseParameters(command, parameters);
-                // command.Execute(paramInfos);
+                command.Execute(paramInfos);
             }
             catch (Exception ex)
             {
@@ -172,15 +172,15 @@ namespace CommandConsole
                     {
                         case VariableType.String:
                             string newString = Convert.ToString(newValue);
-                            AddVariable(new StringInfo(variableType, variableName, newString));
+                            AddVariable(new StringInfo(variableName, newString));
                             break;
                         case VariableType.Int:
                             int newInt = Convert.ToInt32(newValue);
-                            AddVariable(new IntInfo(variableType, variableName, newInt));
+                            AddVariable(new IntInfo(variableName, newInt));
                             break;
                         case VariableType.Bool:
                             bool newBool = Convert.ToBoolean(newValue);
-                            AddVariable(new BoolInfo(variableType, variableName, newBool));
+                            AddVariable(new BoolInfo(variableName, newBool));
                             break;
                         default:
                             throw new Exception("Invalid type");
@@ -199,25 +199,25 @@ namespace CommandConsole
 
         public void SetVariableName(string oldName, string newName)
         {
-            string variableType = GetVariable(oldName).Type;
+            VariableInfo variableType = GetVariable(oldName);
             var variableValue = GetVariable(oldName).GetValueAsString();
             try
             {
                 DeleteVariable(oldName);
                 try
                 {
-                    switch (variableType)
+                    switch (variableType.Type)
                     {
-                        case "string":
-                            AddVariable(new StringInfo(variableType, newName, variableValue));
+                        case VariableType.String:
+                            AddVariable(new StringInfo(newName, variableValue));
                             break;
-                        case "int":
+                        case VariableType.Int:
                             int newInt = Convert.ToInt32(variableValue);
-                            AddVariable(new IntInfo(variableType, newName, newInt));
+                            AddVariable(new IntInfo(newName, newInt));
                             break;
-                        case "bool":
+                        case VariableType.Bool:
                             bool newBool = Convert.ToBoolean(variableValue);
-                            AddVariable(new BoolInfo(variableType, newName, newBool));
+                            AddVariable(new BoolInfo(newName, newBool));
                             break;
                         default:
                             throw new Exception("Invalid name");

@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace CommandConsole.Commands
 {
-    internal class CommandAdd : ICommand
+    internal class CommandSub : ICommand
     {
-        public string Name => "add";
+        public string Name => "sub";
 
-        public string HelpText => "add-[First Number]-[Second Number] -> Add the first number to the second number";
+        public string HelpText => "sub-[First Number]-[Second Number] -> Subtract the first number from the second number";
 
         public List<Type> ParameterTypes => new List<Type> {typeof(IntInfo), typeof(IntInfo) };
 
@@ -19,8 +19,8 @@ namespace CommandConsole.Commands
             IntInfo param = inputParams[0] as IntInfo;
             IntInfo param2 = inputParams[1] as IntInfo;
 
-            int sumReturn = param.Value + param2.Value;
-            Console.WriteLine($"{param.Value} + {param2.Value} = " + sumReturn);
+            int sumReturn = param.Value - param2.Value;
+            Console.WriteLine($"{param.Value} - {param2.Value} = " + sumReturn);
 
         }
     }

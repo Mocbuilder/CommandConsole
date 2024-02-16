@@ -34,7 +34,7 @@ namespace CommandConsole
             Commands.Add(new CommandScript(this));
             Commands.Add(new CommandSleep());
             Commands.Add(new CommandPrint(this));
-            Commands.Add(new CommandAdd(this));
+            Commands.Add(new CommandVar(this));
             Commands.Add(new CommandGet(this));
             Commands.Add(new CommandCalc());
             Commands.Add(new CommandRm(this));
@@ -44,7 +44,8 @@ namespace CommandConsole
             Commands.Add(new CommandKill());
             Commands.Add(new CommandRead(this));
             Commands.Add(new CommandAlias(this));
-
+            Commands.Add(new CommandAdd());
+            Commands.Add(new CommandSub());
         }
 
 
@@ -82,7 +83,7 @@ namespace CommandConsole
                 switch (varTypeInfo.Type)
                 {
                     case VariableType.String:
-                        result.Add(new StringInfo("", value));
+                        result.Add(new StringInfo("", GetValueAsString(value)));
                         break;
                     case VariableType.Int:
                         result.Add(new IntInfo("", Convert.ToInt32(value)));
@@ -96,6 +97,25 @@ namespace CommandConsole
                 varPos++;
             }
             return result;
+        }
+
+        private string GetValueAsString(string value)
+        {
+            if (string.IsNullOrEmpty(value))
+                throw new Exception("String is empty");
+
+            VariableInfo varInfo = GetVariableOrDefault(value);
+            if(varInfo != null)
+            {
+                if(varInfo.Type != VariableType.String)
+                    throw new Exception($"Variable '{varInfo.Name}' is not a string");
+                return varInfo.GetValueAsString();
+            }
+
+            if (!value.StartsWith("\"") && !value.EndsWith("\"")) 
+               throw new Exception("String is in wrong format");
+
+            return value.Substring(1, value.Length - 2);
         }
 
         public void Execute(string userInput)
@@ -133,7 +153,7 @@ namespace CommandConsole
         {
             try
             {
-                VariableInfo variableGet = Variables.Find(variable => variable.Name == variableName);
+                VariableInfo variableGet = GetVariableOrDefault(variableName);
 
                 if (variableGet == null)
                 {
@@ -146,6 +166,11 @@ namespace CommandConsole
             {
                 throw new Exception("Could not get variable");
             }
+        }
+
+        public VariableInfo GetVariableOrDefault(string variableName)
+        {
+            return Variables.Find(variable => variable.Name == variableName);
         }
 
         public void DeleteVariable(string variableName)
